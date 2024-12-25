@@ -1,0 +1,1 @@
+Å 2webXLhrDcoverage/html/lib/screens/lib/screens/splash_screen.dart.func-c.html

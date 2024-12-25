@@ -1,0 +1,1 @@
+u 2webX½hr=coverage/html/lib/screens/lib/screens/registre.dart.gcov.html

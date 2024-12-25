@@ -1,0 +1,1 @@
+ù 2webXjhr'coverage/html/lib/lib/index-sort-f.html

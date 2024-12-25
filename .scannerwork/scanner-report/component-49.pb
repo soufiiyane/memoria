@@ -1,0 +1,1 @@
+1 2kotlinXhr?android/app/src/main/kotlin/com/example/memoria/MainActivity.kt

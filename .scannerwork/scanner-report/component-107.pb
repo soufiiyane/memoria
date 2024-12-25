@@ -1,0 +1,1 @@
+k 2webXLhrCcoverage/html/lib/screens/lib/screens/politique_conf.dart.func.html

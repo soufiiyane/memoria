@@ -1,0 +1,1 @@
+, 2xmlXhr7android/app/src/main/res/drawable/launch_background.xml

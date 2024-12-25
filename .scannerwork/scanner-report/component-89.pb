@@ -1,0 +1,1 @@
+Y 2webXLhr<coverage/html/lib/models/lib/models/card_data.dart.func.html

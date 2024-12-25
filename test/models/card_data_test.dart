@@ -1,109 +1,107 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:memoria/models/card_data.dart';
 
-// Assurez-vous que cette fonction main() est au niveau supérieur du fichier
 void main() {
-  setUp(() {
-    // Réinitialiser avant chaque test si nécessaire
-  });
+  group('CardData Tests', () {
+    test('Création avec ID spécifié', () {
+      final card = CardData(
+        id: 1,
+        rectoText: 'Question',
+        versoText: 'Réponse',
+      );
+      expect(card.id, equals(1));
+    });
 
-  tearDown(() {
-    // Nettoyer après chaque test si nécessaire
-  });
+    test('Création avec ID auto-généré', () {
+      final card = CardData(
+        rectoText: 'Question',
+        versoText: 'Réponse',
+      );
+      expect(card.id, isNotNull);
+      expect(card.id, isPositive);
+    });
 
-  test('Create CardData with provided ID', () {
-    final card = CardData(
-      id: 123,
-      rectoText: 'Question',
-      versoText: 'Réponse',
-    );
+    test('fromJson avec ID string', () {
+      final json = {
+        'id': '123',
+        'question': 'Test Question',
+        'answer': 'Test Answer',
+        'difficulty': 'easy',
+        'rectoImagePath': 'path/to/image',
+      };
 
-    expect(card.id, equals(123));
-    expect(card.rectoText, equals('Question'));
-    expect(card.versoText, equals('Réponse'));
-  });
+      final card = CardData.fromJson(json);
+      expect(card.id, equals(123));
+      expect(card.rectoText, equals('Test Question'));
+      expect(card.versoText, equals('Test Answer'));
+      expect(card.difficulty, equals('easy'));
+      expect(card.rectoImage, equals('path/to/image'));
+    });
 
-  test('Create CardData with generated ID', () {
-    final card1 = CardData(
-      rectoText: 'Question 1',
-      versoText: 'Réponse 1',
-    );
-    final card2 = CardData(
-      rectoText: 'Question 2',
-      versoText: 'Réponse 2',
-    );
+    test('fromJson avec ID numérique', () {
+      final json = {
+        'id': 456,
+        'question': 'Test Question',
+        'answer': 'Test Answer',
+      };
 
-    expect(card1.id, isNot(equals(card2.id)));
-    expect(card1.id, isPositive);
-    expect(card2.id, isPositive);
-  });
+      final card = CardData.fromJson(json);
+      expect(card.id, equals(456));
+    });
 
-  test('Convert CardData to JSON', () {
-    final card = CardData(
-      id: 123,
-      rectoText: 'Question',
-      versoText: 'Réponse',
-      difficulty: 'EASY',
-      rectoImage: 'image.jpg',
-    );
+    test('fromJson avec valeurs manquantes', () {
+      final json = <String, dynamic>{};
+      final card = CardData.fromJson(json);
 
-    final json = card.toJson();
+      expect(card.id, isNotNull);
+      expect(card.rectoText, equals(''));
+      expect(card.versoText, equals(''));
+      expect(card.difficulty, isNull);
+      expect(card.rectoImage, isNull);
+    });
 
-    expect(
-        json,
-        equals({
-          'id': 123,
-          'question': 'Question',
-          'answer': 'Réponse',
-          'difficulty': 'EASY',
-          'imageUrl': 'image.jpg',
-        }));
-  });
+    test('fromApiResponse avec données complètes', () {
+      final json = {
+        'id': 789,
+        'question': 'API Question',
+        'answer': 'API Answer',
+        'difficulty': 'medium',
+        'imageUrl': 'http://example.com/image.jpg',
+      };
 
-  test('Create CardData from JSON with string ID', () {
-    final json = {
-      'id': '123',
-      'question': 'Question',
-      'answer': 'Réponse',
-      'difficulty': 'MEDIUM',
-      'rectoImagePath': 'image.jpg',
-    };
+      final card = CardData.fromApiResponse(json);
+      expect(card.id, equals(789));
+      expect(card.rectoText, equals('API Question'));
+      expect(card.versoText, equals('API Answer'));
+      expect(card.difficulty, equals('medium'));
+      expect(card.rectoImage, equals('http://example.com/image.jpg'));
+    });
 
-    final card = CardData.fromJson(json);
+    test('toJson conversion', () {
+      final card = CardData(
+        id: 999,
+        rectoText: 'Question Test',
+        versoText: 'Réponse Test',
+        difficulty: 'hard',
+        rectoImage: 'image.jpg',
+      );
 
-    expect(card.id, equals(123));
-    expect(card.rectoText, equals('Question'));
-    expect(card.versoText, equals('Réponse'));
-    expect(card.difficulty, equals('MEDIUM'));
-    expect(card.rectoImage, equals('image.jpg'));
-  });
+      final json = card.toJson();
+      expect(json['id'], equals(999));
+      expect(json['question'], equals('Question Test'));
+      expect(json['answer'], equals('Réponse Test'));
+      expect(json['difficulty'], equals('hard'));
+      expect(json['imageUrl'], equals('image.jpg'));
+    });
 
-  test('Create CardData from empty JSON', () {
-    final json = <String, dynamic>{};
-    final card = CardData.fromJson(json);
+    test('IDs uniques pour plusieurs cartes', () {
+      final card1 = CardData(rectoText: 'Q1', versoText: 'R1');
+      final card2 = CardData(rectoText: 'Q2', versoText: 'R2');
+      final card3 = CardData(rectoText: 'Q3', versoText: 'R3');
 
-    expect(card.id, isPositive);
-    expect(card.rectoText, equals(''));
-    expect(card.versoText, equals(''));
-    expect(card.difficulty, isNull);
-    expect(card.rectoImage, isNull);
-  });
-
-  test('Create CardData from API response', () {
-    final json = {
-      'id': 123,
-      'question': 'Question API',
-      'answer': 'Réponse API',
-      'difficulty': 'HARD',
-      'imageUrl': 'api_image.jpg',
-    };
-
-    final card = CardData.fromApiResponse(json);
-
-    expect(card.id, equals(123));
-    expect(card.rectoText, equals('Question API'));
-    expect(card.versoText, equals('Réponse API'));
-    expect(card.difficulty, equals('HARD'));
-    expect(card.rectoImage, equals('api_image.jpg'));
+      expect(card1.id, isNot(equals(card2.id)));
+      expect(card2.id, isNot(equals(card3.id)));
+      expect(card3.id, isNot(equals(card1.id)));
+    });
   });
 }

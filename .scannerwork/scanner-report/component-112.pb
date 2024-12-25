@@ -1,0 +1,1 @@
+p 2webXóhr:coverage/html/lib/screens/lib/screens/recto.dart.gcov.html

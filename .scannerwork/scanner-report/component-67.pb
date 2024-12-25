@@ -1,0 +1,1 @@
+C 2webX‡hr8coverage/html/models/lib/models/card_data.dart.gcov.html

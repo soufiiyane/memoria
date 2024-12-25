@@ -1,0 +1,1 @@
+Œ 2webX¶hrBcoverage/html/lib/screens/lib/screens/splash_screen.dart.gcov.html

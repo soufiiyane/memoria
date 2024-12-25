@@ -1,0 +1,1 @@
+z 2webXLhr>coverage/html/lib/screens/lib/screens/parametre.dart.func.html

@@ -1,0 +1,1 @@
+~ 2webXŒhr>coverage/html/lib/screens/lib/screens/parametre.dart.gcov.html

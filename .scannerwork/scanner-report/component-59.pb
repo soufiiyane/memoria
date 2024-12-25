@@ -1,0 +1,1 @@
+; 2webXLhr8coverage/html/config/lib/config/apiconfig.dart.func.html

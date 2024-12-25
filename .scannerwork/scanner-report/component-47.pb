@@ -1,0 +1,1 @@
+/ 2xmlXhr;android/app/src/main/res/drawable-v21/launch_background.xml

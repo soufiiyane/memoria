@@ -1,0 +1,1 @@
+F 2webXLhr8coverage/html/models/lib/models/card_data.dart.func.html

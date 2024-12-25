@@ -1,0 +1,1 @@
+è 2webX≈hrCcoverage/html/lib/screens/lib/screens/politique_conf.dart.gcov.html
